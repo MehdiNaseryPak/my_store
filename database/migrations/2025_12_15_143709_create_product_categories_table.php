@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('image');
+            $table->text('image');
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('show_in_menu')->default(0);
             $table->foreignId('parent_id')->nullable()->constrained('product_categories');

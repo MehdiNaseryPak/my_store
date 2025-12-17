@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('persian_name');
             $table->string('orginal_name');
             $table->string('slug')->unique();
-            $table->string('logo');
+            $table->text('logo');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
             $table->softDeletes();

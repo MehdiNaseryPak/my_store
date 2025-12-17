@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
             $table->string('slug')->unique();
-            $table->string('profile_photo_path')->nullable();
+            $table->text('profile_photo_path')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->text('two_factor_secret');
             $table->text('two_factor_codes');

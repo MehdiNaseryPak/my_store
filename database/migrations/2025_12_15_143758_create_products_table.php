@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('introduction');
             $table->string('slug')->unique();
-            $table->string('image');
+            $table->text('image');
             $table->decimal('weight', 10, 2);
             $table->decimal('length', 10, 1)->comment('cm unit');
             $table->decimal('width', 10, 1)->comment('cm unit');
