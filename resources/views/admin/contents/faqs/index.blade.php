@@ -2,6 +2,6 @@
 @section('title','لیست پرسش ها')
 @section('content')
 
-    <livewire:admin.faq.faq-list>
+    <livewire:admin.content.faq.faq-list>
 
 @endsection

@@ -9,39 +9,15 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پرسش فارسی</label>
+                    <label  class="col-sm-2 col-form-label">پرسش</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="پرسش فارسی" dir="rtl" name="question_fa" value="{{ old('question_fa',$faq->question_fa) }}">
+                        <input type="text" class="form-control text-left" placeholder="پرسش" dir="rtl" name="question" value="{{ old('question',$faq->question) }}">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پرسش انگلیسی</label>
+                    <label  class="col-sm-2 col-form-label">پاسخ</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="پرسش انگلیسی" dir="rtl" name="question_en" value="{{ old('question_en',$faq->question_en) }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پرسش عربی</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="پرسش عربی" dir="rtl" name="question_ar" value="{{ old('question_ar',$faq->question_ar) }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پاسخ فارسی</label>
-                    <div class="col-sm-10">
-                        <textarea name="answer_fa" id="answer_fa" class="form-control" rows="3">{{ old('answer_fa',$faq->answer_fa) }}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پاسخ انگلیسی</label>
-                    <div class="col-sm-10">
-                        <textarea name="answer_en" id="answer_en" class="form-control" rows="3">{{ old('answer_en',$faq->answer_en) }}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">پاسخ عربی</label>
-                    <div class="col-sm-10">
-                        <textarea name="answer_ar" id="answer_ar" class="form-control" rows="3">{{ old('answer_ar',$faq->answer_ar) }}</textarea>
+                        <textarea name="answer" id="answer" class="form-control" rows="3">{{ old('answer',$faq->answer) }}</textarea>
                     </div>
                 </div>
                 <div class="form-group row">

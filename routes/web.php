@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 
@@ -18,13 +19,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{postCategory}',[PostCategoryController::class,'edit'])->name('admin.content.post_category.edit');
             Route::put('/update/{postCategory}',[PostCategoryController::class,'update'])->name('admin.content.post_category.update');
         });
-        // PostCategory
+        // Post
         Route::prefix('posts')->group(function(){
             Route::get('/',[PostController::class,'index'])->name('admin.content.post.index');
             Route::get('/create',[PostController::class,'create'])->name('admin.content.post.create');
             Route::post('/store',[PostController::class,'store'])->name('admin.content.post.store');
             Route::get('/edit/{post}',[PostController::class,'edit'])->name('admin.content.post.edit');
             Route::put('/update/{post}',[PostController::class,'update'])->name('admin.content.post.update');
+        });
+        // Post
+        Route::prefix('faqs')->group(function(){
+            Route::get('/',[FaqController::class,'index'])->name('admin.content.faq.index');
+            Route::get('/create',[FaqController::class,'create'])->name('admin.content.faq.create');
+            Route::post('/store',[FaqController::class,'store'])->name('admin.content.faq.store');
+            Route::get('/edit/{faq}',[FaqController::class,'edit'])->name('admin.content.faq.edit');
+            Route::put('/update/{faq}',[FaqController::class,'update'])->name('admin.content.faq.update');
         });
     });
 });

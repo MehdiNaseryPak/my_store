@@ -11,7 +11,7 @@ class UpdateFaqRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class UpdateFaqRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'question' => 'required|string|min:5,max:255',
+            'answer' => 'required|string|min:2,max:255',
+            'status' => 'required|numeric|in:0,1',
         ];
     }
 }
