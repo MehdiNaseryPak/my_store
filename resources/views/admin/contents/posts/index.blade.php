@@ -2,6 +2,6 @@
 @section('title','لیست پست ')
 @section('content')
 
-    <livewire:admin.post.post-list>
+    <livewire:admin.content.post.post-list>
 
 @endsection
