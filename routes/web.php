@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Content\FaqController;
+use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 
@@ -27,13 +28,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{post}',[PostController::class,'edit'])->name('admin.content.post.edit');
             Route::put('/update/{post}',[PostController::class,'update'])->name('admin.content.post.update');
         });
-        // Post
+        // Faq
         Route::prefix('faqs')->group(function(){
             Route::get('/',[FaqController::class,'index'])->name('admin.content.faq.index');
             Route::get('/create',[FaqController::class,'create'])->name('admin.content.faq.create');
             Route::post('/store',[FaqController::class,'store'])->name('admin.content.faq.store');
             Route::get('/edit/{faq}',[FaqController::class,'edit'])->name('admin.content.faq.edit');
             Route::put('/update/{faq}',[FaqController::class,'update'])->name('admin.content.faq.update');
+        });
+        // Menu
+        Route::prefix('menus')->group(function(){
+            Route::get('/',[MenuController::class,'index'])->name('admin.content.menu.index');
+            Route::get('/create',[MenuController::class,'create'])->name('admin.content.menu.create');
+            Route::post('/store',[MenuController::class,'store'])->name('admin.content.menu.store');
+            Route::get('/edit/{menu}',[MenuController::class,'edit'])->name('admin.content.menu.edit');
+            Route::put('/update/{menu}',[MenuController::class,'update'])->name('admin.content.menu.update');
         });
     });
 });

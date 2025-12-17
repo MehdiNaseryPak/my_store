@@ -2,6 +2,6 @@
 @section('title','لیست منو')
 @section('content')
 
-    <livewire:admin.menu.menu-list>
+    <livewire:admin.content.menu.menu-list>
 
 @endsection

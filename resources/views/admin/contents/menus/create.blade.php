@@ -1,5 +1,5 @@
 @extends('admin.layouts.master')
-@section('title','')
+@section('title','افزودن منو')
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -8,21 +8,9 @@
             <form action="{{ route('admin.content.menu.store') }}" method="POST" id="form">
                 @csrf
                 <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام فارسی</label>
+                    <label  class="col-sm-2 col-form-label">نام</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام فارسی" dir="rtl" name="name_fa" value="{{ old('name_fa') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام انگلیسی</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام انگلیسی" dir="ltr" name="name_en" value="{{ old('name_en') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام عربی</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام عربی" dir="rtl" name="name_ar" value="{{ old('name_ar') }}">
+                        <input type="text" class="form-control text-left" placeholder="نام" dir="rtl" name="name" value="{{ old('name') }}">
                     </div>
                 </div>
                 <div class="form-group row">

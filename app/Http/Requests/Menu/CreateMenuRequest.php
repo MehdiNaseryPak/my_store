@@ -11,7 +11,7 @@ class CreateMenuRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class CreateMenuRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|min:2,max:255',
+            'url' => 'required|max:255|min:5',
+            'status' => 'required|numeric|in:0,1',
+            'parent_id' => 'nullable|min:1|max:100000000|regex:/^[0-9]+$/u|exists:menus,id',
         ];
     }
 }
