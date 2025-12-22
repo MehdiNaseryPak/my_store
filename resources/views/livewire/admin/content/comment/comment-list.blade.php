@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="table overflow-auto" tabindex="8">
             <div class="d-flex justify-content-end mb-2">
-                <a href="{{ route('admin.content.page.create') }}" class="btn btn-outline-success">افزودن</a>
+                <a href="{{ route('admin.content.banner.create') }}" class="btn btn-outline-success">افزودن</a>
             </div>
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">عنوان جستجو</label>
@@ -16,7 +16,9 @@
                 <tr>
                     <th class="text-center align-middle text-primary">ردیف</th>
                     <th class="text-center align-middle text-primary">عنوان</th>
-                    <th class="text-center align-middle text-primary">نامک</th>
+                    <th class="text-center align-middle text-primary">عکس</th>
+                    <th class="text-center align-middle text-primary">لینک</th>
+                    <th class="text-center align-middle text-primary">موقعیت</th>
                     <th class="text-center align-middle text-primary"> وضعیت</th>
                     <th class="text-center align-middle text-primary">ویرایش</th>
                     <th class="text-center align-middle text-primary">حذف</th>
@@ -24,29 +26,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($pages as $page)
+                    @foreach($comments as $comment)
                     <tr>
                         <td class="text-center align-middle">{{ $loop->iteration }}</td>
-                        <td class="text-center align-middle">{{ $page->title }}</td>
-                        <td class="text-center align-middle">{{ $page->slug }}</td>
-                                           
-                        <td class="text-center align-middle"><span wire:click="changeStatus({{ $page->id }})" class="cursor-pointer badge @if($page->status) badge-success @else badge-danger @endif">{{ $page->status ? 'فعال' : 'غیرفعال' }}</span></td>
+                        <td class="text-center align-middle">{{ $comment->title }}</td>
                         <td class="text-center align-middle">
-                            <a class="btn btn-outline-info" href="{{ route('admin.content.page.edit', $page->id) }}">
+                            <figure class="avatar avatar">
+                                <img src="{{ asset($banner->image) }}" class="rounded-circle" alt="image">
+                            </figure>
+                        </td>
+                        <td class="text-center align-middle">{{ $banner->url }}</td>                        
+                        <td class="text-center align-middle"><span class="cursor-pointer badge badge-info">{{ $positions[$banner->position] }}</span></td>
+                        <td class="text-center align-middle"><span wire:click="changeStatus({{ $banner->id }})" class="cursor-pointer badge @if($banner->status) badge-success @else badge-danger @endif">{{ $banner->status ? 'فعال' : 'غیرفعال' }}</span></td>
+                        <td class="text-center align-middle">
+                            <a class="btn btn-outline-info" href="{{ route('admin.content.banner.edit', $banner->id) }}">
                                 ویرایش
                             </a>
                         </td>
                         <td class="text-center align-middle">
-                            <button class="btn btn-outline-danger" wire:click="deleteConfirm({{ $page->id }})">
+                            <button class="btn btn-outline-danger" wire:click="deleteConfirm({{ $banner->id }})">
                                 حذف
                             </button>
                         </td>
-                        <td class="text-center align-middle">{{ verta($page->created_at)->format('Y/m/d') }}</td>
+                        <td class="text-center align-middle">{{ verta($banner->created_at)->format('Y/m/d') }}</td>
                     </tr>
                     @endforeach
 
             </table>
-            {{$pages->links()}}
+            {{$banners->links()}}
 
         </div>
     </div>
@@ -54,7 +61,7 @@
 @section('script')
     <script>
         document.addEventListener('livewire:init', () => {
-            Livewire.on('deletePage', (message,type) => {
+            Livewire.on('deleteBanner', (message,type) => {
                 Swal.fire({
                     title: 'آیا مطمئن هستید؟',
                     text: "این عملیات قابل بازگشت نیست!",
@@ -66,7 +73,7 @@
                     cancelButtonText: 'خیر'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Livewire.dispatch('delete',{id: message.pageId});
+                        Livewire.dispatch('delete',{id: message.bannerId});
                     }
                 })
             })

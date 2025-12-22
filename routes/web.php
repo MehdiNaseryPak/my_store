@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\Content\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MenuController;
+use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 
@@ -45,13 +46,21 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{menu}',[MenuController::class,'edit'])->name('admin.content.menu.edit');
             Route::put('/update/{menu}',[MenuController::class,'update'])->name('admin.content.menu.update');
         });
-        // Menu
+        // Banner
         Route::prefix('banners')->group(function(){
             Route::get('/',[BannerController::class,'index'])->name('admin.content.banner.index');
             Route::get('/create',[BannerController::class,'create'])->name('admin.content.banner.create');
             Route::post('/store',[BannerController::class,'store'])->name('admin.content.banner.store');
             Route::get('/edit/{banner}',[BannerController::class,'edit'])->name('admin.content.banner.edit');
             Route::put('/update/{banner}',[BannerController::class,'update'])->name('admin.content.banner.update');
+        });
+        // Page
+        Route::prefix('pages')->group(function(){
+            Route::get('/',[PageController::class,'index'])->name('admin.content.page.index');
+            Route::get('/create',[PageController::class,'create'])->name('admin.content.page.create');
+            Route::post('/store',[PageController::class,'store'])->name('admin.content.page.store');
+            Route::get('/edit/{page}',[PageController::class,'edit'])->name('admin.content.page.edit');
+            Route::put('/update/{page}',[PageController::class,'update'])->name('admin.content.page.update');
         });
     });
 });

@@ -29,7 +29,7 @@
                     <li><a href="{{ route('admin.content.post_category.index') }}">لیست دسته بندی ها</a></li>
                 </ul>
             </li>
-            {{-- <li>
+            <li>
                 <a href="#">پست</a>
                 <ul>
                     <li><a href="{{ route('admin.content.post.create') }}">ایجاد پست</a></li>
@@ -44,6 +44,13 @@
                 </ul>
             </li>
             <li>
+                <a href="#">منو</a>
+                <ul>
+                    <li><a href="{{ route('admin.content.menu.create') }}">ایجاد منو</a></li>
+                    <li><a href="{{ route('admin.content.menu.index') }}">لیست منو ها</a></li>
+                </ul>
+            </li>
+            <li>
                 <a href="#">بنر</a>
                 <ul>
                     <li><a href="{{ route('admin.content.banner.create') }}">ایجاد بنر</a></li>
@@ -51,6 +58,13 @@
                 </ul>
             </li>
             <li>
+                <a href="#">صفحه</a>
+                <ul>
+                    <li><a href="{{ route('admin.content.page.create') }}">ایجاد صفحه</a></li>
+                    <li><a href="{{ route('admin.content.page.index') }}">لیست صفحه ها</a></li>
+                </ul>
+            </li>
+            {{-- <li>
                 <a href="#">کاربران</a>
                 <ul>
                     <li><a href="{{ route('admin.content.user.index') }}">لیست کاربران</a></li>
