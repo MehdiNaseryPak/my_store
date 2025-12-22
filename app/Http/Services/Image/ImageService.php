@@ -22,7 +22,7 @@ class ImageService extends ImageToolsService
         $this->provider();
 
         $img = $this->manager->read($image->getRealPath())
-            ->encode($this->getImageFormat() , 100);
+            ->encode(new WebpEncoder(quality: 100));
 
         $path = public_path($this->getImageAddress());
         $img->save($path);
@@ -37,7 +37,7 @@ class ImageService extends ImageToolsService
 
         $img = $this->manager->read($image->getRealPath())
             ->cover($width, $height)
-            ->encode($this->getImageFormat() , 100);
+            ->encode(new WebpEncoder(quality: 100));
 
         $path = public_path($this->getImageAddress());
         $img->save($path);

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Content\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MenuController;
@@ -43,6 +44,14 @@ Route::prefix('admin')->group(function () {
             Route::post('/store',[MenuController::class,'store'])->name('admin.content.menu.store');
             Route::get('/edit/{menu}',[MenuController::class,'edit'])->name('admin.content.menu.edit');
             Route::put('/update/{menu}',[MenuController::class,'update'])->name('admin.content.menu.update');
+        });
+        // Menu
+        Route::prefix('banners')->group(function(){
+            Route::get('/',[BannerController::class,'index'])->name('admin.content.banner.index');
+            Route::get('/create',[BannerController::class,'create'])->name('admin.content.banner.create');
+            Route::post('/store',[BannerController::class,'store'])->name('admin.content.banner.store');
+            Route::get('/edit/{banner}',[BannerController::class,'edit'])->name('admin.content.banner.edit');
+            Route::put('/update/{banner}',[BannerController::class,'update'])->name('admin.content.banner.update');
         });
     });
 });
