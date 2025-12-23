@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Content\BannerController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
+use App\Http\Controllers\Admin\Market\ProductCategoryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,14 @@ Route::prefix('admin')->group(function () {
             Route::post('/store',[BrandController::class,'store'])->name('admin.market.brand.store');
             Route::get('/edit/{brand}',[BrandController::class,'edit'])->name('admin.market.brand.edit');
             Route::put('/update/{brand}',[BrandController::class,'update'])->name('admin.market.brand.update');
+        });
+        // Category
+        Route::prefix('product_categories')->group(function(){
+            Route::get('/',[ProductCategoryController::class,'index'])->name('admin.market.product_category.index');
+            Route::get('/create',[ProductCategoryController::class,'create'])->name('admin.market.product_category.create');
+            Route::post('/store',[ProductCategoryController::class,'store'])->name('admin.market.product_category.store');
+            Route::get('/edit/{productCategory}',[ProductCategoryController::class,'edit'])->name('admin.market.product_category.edit');
+            Route::put('/update/{productCategory}',[ProductCategoryController::class,'update'])->name('admin.market.product_category.update');
         });
     });
 });

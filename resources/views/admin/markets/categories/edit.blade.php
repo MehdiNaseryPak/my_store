@@ -1,8 +1,5 @@
 @extends('admin.layouts.master')
 @section('title','ویرایش دسته بندی')
-@section('style')
-    <link rel="stylesheet" href="{{ asset('admin-assets/vendors/select2/css/select2.min.css') }}">
-@endsection
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -12,23 +9,12 @@
                 @csrf
                 @method('PUT')
                 <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام فارسی</label>
+                    <label  class="col-sm-2 col-form-label">نام</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام فارسی" dir="rtl" name="name_fa" value="{{ old('name_fa',$productCategory->name_fa) }}">
+                        <input type="text" class="form-control text-left" placeholder="نام" dir="rtl" name="name" value="{{ old('name',$productCategory->name) }}">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام انگلیسی</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام انگلیسی" dir="ltr" name="name_en" value="{{ old('name_en',$productCategory->name_en) }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">نام عربی</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-left" placeholder="نام عربی" dir="rtl" name="name_ar" value="{{ old('name_ar',$productCategory->name_ar) }}">
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                     <label  class="col-sm-2 col-form-label">زیر منو</label>
                     <div class="col-sm-10">
@@ -40,24 +26,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">توضیحات فارسی</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="description_fa" id="description_fa" rows="3">{{ old('description_fa',$productCategory->description_fa) }}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">توضیحات انگلیسی</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="description_en" id="description_en" rows="3">{{ old('description_en',$productCategory->description_en) }}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">توضیحات عربی</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" name="description_ar" id="description_ar" rows="3">{{ old('description_ar',$productCategory->description_ar) }}</textarea>
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                     <label  class="col-sm-2 col-form-label" for="image">عکس</label>
                     <div class="col-sm-10">
@@ -66,7 +35,7 @@
                 </div>
                 <div class="form-group row">
                     <figure class="avatar avatar">
-                        <img src="{{ asset($productCategory->image['indexArray'][$productCategory->image['currentImage']] ) }}" class="rounded-circle" alt="image">
+                        <img src="{{ asset($productCategory->image ) }}" class="rounded-circle" alt="image">
                     </figure>
                 </div>
                 <div class="form-group row">
@@ -97,32 +66,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('script')
-    <script src="{{ asset('admin-assets/vendors/select2/js/select2.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            var tags_input = $('#tags');
-            var select_tags = $('#select_tags');
-            var default_tags = tags_input.val();
-            var default_data = null;
-
-            if (tags_input.val() !== null && tags_input.val().length > 0) {
-                default_data = default_tags.split(',');
-            }
-            select_tags.select2({
-                placeholder: 'لطفا تگ های خود را وارد نمایید',
-                tags : true,
-                data: default_data
-
-            });
-            select_tags.children('option').attr('selected', true).trigger('change');
-            $('#form').submit(function(e){
-                if(select_tags.val() !== null && select_tags.val().length > 0) {
-                    var selected_source = select_tags.val().join(',');
-                    tags_input.val(selected_source)
-                }
-            })
-        });
-    </script>
 @endsection

@@ -80,14 +80,14 @@
                     <li><a href="{{ route('admin.market.brand.index') }}">لیست برند ها</a></li>
                 </ul>
             </li>
-            {{-- <li>
+            <li>
                 <a href="#">دسته بندی</a>
                 <ul>
                     <li><a href="{{ route('admin.market.product_category.create') }}">ایجاد دسته بندی</a></li>
                     <li><a href="{{ route('admin.market.product_category.index') }}">لیست دسته بندی ها</a></li>
                 </ul>
             </li>
-            <li>
+            {{-- <li>
                 <a href="#">محصول</a>
                 <ul>
                     <li><a href="{{ route('admin.market.product.create') }}">ایجاد محصول</a></li>
