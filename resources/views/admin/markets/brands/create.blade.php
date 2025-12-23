@@ -1,8 +1,5 @@
 @extends('admin.layouts.master')
 @section('title','افزودن برند')
-@section('style')
-    <link rel="stylesheet" href="{{ asset('admin-assets/vendors/select2/css/select2.min.css') }}">
-@endsection
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -28,14 +25,7 @@
                         <input type="file" class="form-control-file" id="logo" dir="rtl" name="logo">
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label" for="tags">تگ ها</label>
-                    <div class="col-sm-10">
-                        <input type="hidden" name="tags" id="tags" value="{{ old('tags') }}">
-                        <select id="select_tags" class="select2 form-control" multiple="multiple">
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="status">وضعیت</label>
                     <div class="col-sm-10">
@@ -56,25 +46,4 @@
     </div>
 </div>
 @endsection
-@section('script')
-    <script src="{{ asset('admin-assets/vendors/select2/js/select2.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            var tags_input = $('#tags');
-            var select_tags = $('#select_tags');
 
-            select_tags.select2({
-                placeholder: 'لطفا تگ های خود را وارد نمایید',
-                tags : true,
-
-            });
-
-            $('#form').submit(function(e){
-                if(select_tags.val() !== null && select_tags.val().length > 0) {
-                    var selected_source = select_tags.val().join(',');
-                    tags_input.val(selected_source)
-                }
-            })
-        });
-    </script>
-@endsection

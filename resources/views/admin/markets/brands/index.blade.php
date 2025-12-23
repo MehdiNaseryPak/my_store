@@ -2,6 +2,6 @@
 @section('title','لیست برند ها')
 @section('content')
 
-    <livewire:admin.brand.brand-list>
+    <livewire:admin.market.brand.brand-list>
 
 @endsection

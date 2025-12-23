@@ -72,8 +72,15 @@
             </li> --}}
 
         </ul>
-        {{-- <ul id="market">
+        <ul id="market">
             <li>
+                <a href="#">برند</a>
+                <ul>
+                    <li><a href="{{ route('admin.market.brand.create') }}">ایجاد برند</a></li>
+                    <li><a href="{{ route('admin.market.brand.index') }}">لیست برند ها</a></li>
+                </ul>
+            </li>
+            {{-- <li>
                 <a href="#">دسته بندی</a>
                 <ul>
                     <li><a href="{{ route('admin.market.product_category.create') }}">ایجاد دسته بندی</a></li>
@@ -86,7 +93,7 @@
                     <li><a href="{{ route('admin.market.product.create') }}">ایجاد محصول</a></li>
                     <li><a href="{{ route('admin.market.product.index') }}">لیست محصول ها</a></li>
                 </ul>
-            </li>
-        </ul> --}}
+            </li> --}}
+        </ul>
     </div>
 </div>

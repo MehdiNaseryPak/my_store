@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\Admin\Content\BannerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
 use App\Http\Controllers\Admin\Content\PostController;
+use App\Http\Controllers\Admin\Market\BrandController;
+use App\Http\Controllers\Admin\Content\BannerController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 
 Route::get('/', function () {
@@ -61,6 +62,16 @@ Route::prefix('admin')->group(function () {
             Route::post('/store',[PageController::class,'store'])->name('admin.content.page.store');
             Route::get('/edit/{page}',[PageController::class,'edit'])->name('admin.content.page.edit');
             Route::put('/update/{page}',[PageController::class,'update'])->name('admin.content.page.update');
+        });
+    });
+    Route::prefix('market')->group(function(){
+        // Brand
+        Route::prefix('brands')->group(function(){
+            Route::get('/',[BrandController::class,'index'])->name('admin.market.brand.index');
+            Route::get('/create',[BrandController::class,'create'])->name('admin.market.brand.create');
+            Route::post('/store',[BrandController::class,'store'])->name('admin.market.brand.store');
+            Route::get('/edit/{brand}',[BrandController::class,'edit'])->name('admin.market.brand.edit');
+            Route::put('/update/{brand}',[BrandController::class,'update'])->name('admin.market.brand.update');
         });
     });
 });

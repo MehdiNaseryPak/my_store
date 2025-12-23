@@ -1,8 +1,5 @@
 @extends('admin.layouts.master')
 @section('title','ویرایش برند')
-@section('style')
-    <link rel="stylesheet" href="{{ asset('admin-assets/vendors/select2/css/select2.min.css') }}">
-@endsection
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -31,17 +28,10 @@
                 </div>
                 <div class="form-group row">
                     <figure class="avatar avatar">
-                        <img src="{{ asset($brand->logo['indexArray'][$brand->logo['currentImage']] ) }}" class="rounded-circle" alt="logo">
+                        <img src="{{ asset($brand->logo) }}" class="rounded-circle" alt="logo">
                     </figure>
                 </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label" for="tags">تگ ها</label>
-                    <div class="col-sm-10">
-                        <input type="hidden" name="tags" id="tags" value="{{ old('tags',$brand->tags) }}">
-                        <select id="select_tags" class="select2 form-control" multiple="multiple">
-                        </select>
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label" for="status">وضعیت</label>
                     <div class="col-sm-10">
@@ -61,32 +51,4 @@
         </div>
     </div>
 </div>
-@endsection
-@section('script')
-    <script src="{{ asset('admin-assets/vendors/select2/js/select2.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            var tags_input = $('#tags');
-            var select_tags = $('#select_tags');
-            var default_tags = tags_input.val();
-            var default_data = null;
-
-            if (tags_input.val() !== null && tags_input.val().length > 0) {
-                default_data = default_tags.split(',');
-            }
-            select_tags.select2({
-                placeholder: 'لطفا تگ های خود را وارد نمایید',
-                tags : true,
-                data: default_data
-
-            });
-            select_tags.children('option').attr('selected', true).trigger('change');
-            $('#form').submit(function(e){
-                if(select_tags.val() !== null && select_tags.val().length > 0) {
-                    var selected_source = select_tags.val().join(',');
-                    tags_input.val(selected_source)
-                }
-            })
-        });
-    </script>
 @endsection
