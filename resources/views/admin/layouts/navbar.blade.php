@@ -87,13 +87,13 @@
                     <li><a href="{{ route('admin.market.product_category.index') }}">لیست دسته بندی ها</a></li>
                 </ul>
             </li>
-            {{-- <li>
+            <li>
                 <a href="#">محصول</a>
                 <ul>
                     <li><a href="{{ route('admin.market.product.create') }}">ایجاد محصول</a></li>
                     <li><a href="{{ route('admin.market.product.index') }}">لیست محصول ها</a></li>
                 </ul>
-            </li> --}}
+            </li>
         </ul>
     </div>
 </div>

@@ -45,8 +45,8 @@ class ProductCategoryController extends Controller
     {
         $inputs = $request->all();
         if ($request->hasFile('image')) {
-            if (!empty($brand->image)) {
-                $imageService->deleteImage($brand->image);
+            if (!empty($productCategory->image)) {
+                $imageService->deleteImage($productCategory->image);
             }
             $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'product-category');
             $result = $imageService->save($request->file('image'));
@@ -55,8 +55,8 @@ class ProductCategoryController extends Controller
             }
             $inputs['image'] = $result;
         } else {
-            if (!empty($brand->image)) {
-                $image = $brand->image;
+            if (!empty($productCategory->image)) {
+                $image = $productCategory->image;
                 $inputs['image'] = $image;
             }
         }

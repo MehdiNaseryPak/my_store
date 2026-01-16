@@ -2,6 +2,6 @@
 @section('title','لیست محصولات')
 @section('content')
 
-    <livewire:admin.product.product-list>
+    <livewire:admin.market.product.product-list>
 
 @endsection
