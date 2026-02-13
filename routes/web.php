@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\Content\FaqController;
 use App\Http\Controllers\Admin\Content\MenuController;
 use App\Http\Controllers\Admin\Content\PageController;
@@ -8,6 +10,7 @@ use App\Http\Controllers\Admin\Content\PostController;
 use App\Http\Controllers\Admin\Market\BrandController;
 use App\Http\Controllers\Admin\Content\BannerController;
 use App\Http\Controllers\Admin\Market\ProductController;
+use App\Http\Controllers\Admin\ProjectGalleryController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 use App\Http\Controllers\Admin\Market\ProductCategoryController;
 
@@ -91,6 +94,25 @@ Route::prefix('admin')->group(function () {
             Route::get('/edit/{product}',[ProductController::class,'edit'])->name('admin.market.product.edit');
             Route::put('/update/{product}',[ProductController::class,'update'])->name('admin.market.productcategory.update');
         });
+    });
+    Route::prefix('projects')->group(function(){
+        Route::get('/',[ProjectController::class,'index'])->name('admin.project.index');
+        Route::get('/create',[ProjectController::class,'create'])->name('admin.project.create');
+        Route::post('/store',[ProjectController::class,'store'])->name('admin.project.store');
+        Route::get('/edit/{project}',[ProjectController::class,'edit'])->name('admin.project.edit');
+        Route::put('/update/{project}',[ProjectController::class,'update'])->name('admin.project.update');
+
+        Route::prefix('galleries')->group(function(){
+            Route::get('/index/{project}',[ProjectGalleryController::class,'index'])->name('admin.project.gallery.index');
+            Route::get('/create/{project}',[ProjectGalleryController::class,'create'])->name('admin.project.gallery.create');
+            Route::post('/store/{project}',[ProjectGalleryController::class,'store'])->name('admin.project.gallery.store');
+        });
+
+    });
+    Route::prefix('profiles')->group(function(){
+        Route::get('/',[ProfileController::class,'index'])->name('admin.profile.index');
+        Route::get('/edit/{profile}',[ProfileController::class,'edit'])->name('admin.profile.edit');
+        Route::put('/update/{profile}',[ProfileController::class,'update'])->name('admin.profile.update');
     });
 });
 
