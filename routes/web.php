@@ -95,24 +95,5 @@ Route::prefix('admin')->group(function () {
             Route::put('/update/{product}',[ProductController::class,'update'])->name('admin.market.productcategory.update');
         });
     });
-    Route::prefix('projects')->group(function(){
-        Route::get('/',[ProjectController::class,'index'])->name('admin.project.index');
-        Route::get('/create',[ProjectController::class,'create'])->name('admin.project.create');
-        Route::post('/store',[ProjectController::class,'store'])->name('admin.project.store');
-        Route::get('/edit/{project}',[ProjectController::class,'edit'])->name('admin.project.edit');
-        Route::put('/update/{project}',[ProjectController::class,'update'])->name('admin.project.update');
-
-        Route::prefix('galleries')->group(function(){
-            Route::get('/index/{project}',[ProjectGalleryController::class,'index'])->name('admin.project.gallery.index');
-            Route::get('/create/{project}',[ProjectGalleryController::class,'create'])->name('admin.project.gallery.create');
-            Route::post('/store/{project}',[ProjectGalleryController::class,'store'])->name('admin.project.gallery.store');
-        });
-
-    });
-    Route::prefix('profiles')->group(function(){
-        Route::get('/',[ProfileController::class,'index'])->name('admin.profile.index');
-        Route::get('/edit/{profile}',[ProfileController::class,'edit'])->name('admin.profile.edit');
-        Route::put('/update/{profile}',[ProfileController::class,'update'])->name('admin.profile.update');
-    });
 });
 
