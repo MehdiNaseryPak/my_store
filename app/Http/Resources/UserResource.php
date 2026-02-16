@@ -7,6 +7,18 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
+
+    private $token;
+
+    public function __construct($resource, $token)
+    {
+        // Ensure you call the parent constructor
+        parent::__construct($resource);
+        $this->resource = $resource;
+
+        $this->token = $token;
+    }
+
     /**
      * Transform the resource into an array.
      *
@@ -17,8 +29,9 @@ class UserResource extends JsonResource
         return [
             'id' => $this->id,
             'full_name' => $this->fullName(),
-            'email' => $this->email,
-            'mobile' => $this->mobile,
+            'email' => $this->email ?? '',
+            'mobile' => $this->mobile ?? '',
+            'token' => $this->token ?? ''
         ];
     }
 }
