@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\Content\BannerController;
 use App\Http\Controllers\Admin\Market\ProductController;
 use App\Http\Controllers\Admin\ProjectGalleryController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
+use App\Http\Controllers\Admin\Market\ProductGalleryController;
 use App\Http\Controllers\Admin\Market\ProductCategoryController;
 
 Route::get('/', function () {
@@ -92,7 +93,13 @@ Route::prefix('admin')->group(function () {
             Route::get('/create',[ProductController::class,'create'])->name('admin.market.product.create');
             Route::post('/store',[ProductController::class,'store'])->name('admin.market.product.store');
             Route::get('/edit/{product}',[ProductController::class,'edit'])->name('admin.market.product.edit');
-            Route::put('/update/{product}',[ProductController::class,'update'])->name('admin.market.productcategory.update');
+            Route::put('/update/{product}',[ProductController::class,'update'])->name('admin.market.product.update');
+            // galleries
+            Route::prefix('galleries')->group(function(){
+                Route::get('/{product:id}',[ProductGalleryController::class,'index'])->name('admin.market.product.gallery.index');
+                Route::get('/create/{product:id}',[ProductGalleryController::class,'create'])->name('admin.market.product.gallery.create');
+                Route::post('/store/{product:id}',[ProductGalleryController::class,'store'])->name('admin.market.product.gallery.store');
+            });
         });
     });
 });

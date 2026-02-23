@@ -17,16 +17,12 @@
                     <th class="text-center align-middle text-primary">ردیف</th>
                     <th class="text-center align-middle text-primary">نام</th>
                     <th class="text-center align-middle text-primary">نامک</th>
-                    <th class="text-center align-middle text-primary">دسته بندی</th>
+                    <th class="text-center align-middle text-primary">دسته بندی ها</th>
                     <th class="text-center align-middle text-primary">برند</th>
-                    <th class="text-center align-middle text-primary">قیمت</th>
-                    <th class="text-center align-middle text-primary">وزن</th>
-                    <th class="text-center align-middle text-primary">طول</th>
-                    <th class="text-center align-middle text-primary">عرض</th>
-                    <th class="text-center align-middle text-primary">ارتفاع</th>
                     <th class="text-center align-middle text-primary">عکس</th>
                     <th class="text-center align-middle text-primary">وضعیت</th>
                     <th class="text-center align-middle text-primary">قابل فروش</th>
+                    <th class="text-center align-middle text-primary">گالری</th>
                     <th class="text-center align-middle text-primary">ویرایش</th>
                     <th class="text-center align-middle text-primary">حذف</th>
                     <th class="text-center align-middle text-primary">تاریخ ایجاد</th>
@@ -38,13 +34,14 @@
                         <td class="text-center align-middle">{{ $loop->iteration }}</td>
                         <td class="text-center align-middle">{{ $product->name }}</td>
                         <td class="text-center align-middle">{{ $product->slug }}</td>
-                        <td class="text-center align-middle">{{ $product->category->name }}</td>
+                        <td class="text-center align-middle">
+                            <ul>
+                                @foreach ($product->categories as $category )
+                                    <li>{{ $category->name }}</li>
+                                @endforeach
+                            </ul>
+                        </td>
                         <td class="text-center align-middle">{{ $product->brand->persian_name }}</td>
-                        <td class="text-center align-middle">{{ $product->price }}</td>
-                        <td class="text-center align-middle">{{ $product->weight }}</td>
-                        <td class="text-center align-middle">{{ $product->length }}</td>
-                        <td class="text-center align-middle">{{ $product->width }}</td>
-                        <td class="text-center align-middle">{{ $product->height }}</td>
                         <td class="text-center align-middle">
                             <figure class="avatar avatar">
                                 <img src="{{ asset($product->image['indexArray']['small'] ) }}" class="rounded-circle" alt="image">
@@ -52,6 +49,11 @@
                         </td>
                         <td class="text-center align-middle"><span wire:click="changeStatus({{ $product->id }})" class="cursor-pointer badge @if($product->status) badge-success @else badge-danger @endif">{{ $product->status ? 'فعال' : 'غیرفعال' }}</span></td>
                         <td class="text-center align-middle"><span wire:click="changeMarketable({{ $product->id }})" class="cursor-pointer badge @if($product->marketable) badge-success @else badge-danger @endif">{{ $product->marketable ? 'فعال' : 'غیرفعال' }}</span></td>
+                        <td class="text-center align-middle">
+                            <a class="btn btn-outline-warning" href="{{ route('admin.market.product.gallery.index', $product->id) }}">
+                                گالری
+                            </a>
+                        </td>
                         <td class="text-center align-middle">
                             <a class="btn btn-outline-info" href="{{ route('admin.market.product.edit', $product->id) }}">
                                 ویرایش

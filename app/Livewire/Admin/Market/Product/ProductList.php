@@ -51,7 +51,7 @@ class ProductList extends SearchableComponent
     }
     public function baseQuery()
     {
-        return Product::query()->with(['brand','category']);
+        return Product::query()->with(['brand','categories']);
     }
     public function render()
     {

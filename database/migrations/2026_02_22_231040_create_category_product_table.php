@@ -11,15 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_colors', function (Blueprint $table) {
-            $table->id();
-            $table->string('color_name');
-            $table->string('color_code');
+        Schema::create('category_product', function (Blueprint $table) {
             $table->foreignId('product_id')->constrained('products')->onUpdate('cascade')->onDelete('cascade');
-            $table->decimal('price_increase', 20, 3)->default(0);
-            $table->tinyInteger('status')->default(0);
-            $table->timestamps();
-            $table->softDeletes();
+            $table->foreignId('category_id')->constrained('product_categories')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -28,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_colors');
+        Schema::dropIfExists('category_product');
     }
 };

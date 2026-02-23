@@ -17,11 +17,11 @@ class Product extends Model
         ];
     }
     
-    protected $fillable = ['name','slug','status','image','marketable','category_id','brand_id','introduction','price','weight','length','width','height'];
+    protected $fillable = ['name','slug','status','image','marketable','brand_id','introduction'];
     protected $casts = ['image' => 'array'];
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(ProductCategory::class,'category_id');
+        return $this->belongsToMany(ProductCategory::class,'category_product','product_id','category_id');
     }
     public function brand()
     {

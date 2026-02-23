@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin\Market;
 
+use App\Models\Market\Brand;
 use Illuminate\Http\Request;
 use App\Models\Market\Product;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\Market\ProductCategory;
 use App\Http\Services\Image\ImageService;
 use App\Http\Requests\Product\CreateProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use App\Models\Market\Brand;
 
 class ProductController extends Controller
 {
@@ -36,19 +37,21 @@ class ProductController extends Controller
             }
             $inputs['image'] = $result;
         }
-
-        $product = Product::create($inputs);
-        if(!empty($inputs['meta_key'][0]))
-        {
-            $metas = array_combine($inputs['meta_key'] , $inputs['meta_value']);
-            foreach($metas as $key => $value)
+        DB::transaction(function () use ($request, $inputs) {
+            $product = Product::create($inputs);
+            $product->categories()->sync($inputs['categories'] ?? []);
+            if(!empty($inputs['meta_key'][0]))
             {
-                $product->metas()->create([
-                    'meta_key' => $key,
-                    'meta_value' => $value
-                ]);
+                $metas = array_combine($inputs['meta_key'] , $inputs['meta_value']);
+                foreach($metas as $key => $value)
+                {
+                    $product->metas()->create([
+                        'meta_key' => $key,
+                        'meta_value' => $value
+                    ]);
+                }
             }
-        }
+        });
         return redirect()->route('admin.market.product.index')->with('swal-success', 'محصول  جدید شما با موفقیت ثبت شد');
     }
     public function edit(Product $product)
@@ -77,7 +80,24 @@ class ProductController extends Controller
                 $inputs['image'] = $image;
             }
         }
-        $product->update($inputs);
+        DB::transaction(function () use ($request, $inputs,$product) {
+            $product->update($inputs);
+            $product->categories()->sync($inputs['categories'] ?? []);
+            if(!empty($inputs['meta_key'][0]))
+            {
+                $product->metas()->delete();
+                $metas = array_combine($inputs['meta_key'] , $inputs['meta_value']);
+                foreach($metas as $key => $value)
+                {
+                    if(!empty($key) && !empty($value))
+                    $product->metas()->create([
+                        'meta_key' => $key,
+                        'meta_value' => $value
+                    ]);
+                }
+            }
+        });
+        
         return redirect()->route('admin.market.product.index')->with('swal-success', 'محصول شما با موفقیت ویرایش شد');
     }
 }

@@ -2,6 +2,6 @@
 @section('title','لیست عکس های محصول')
 @section('content')
 
-    <livewire:admin.product-gallery.product-gallery-list :productId="$product->id" />
+    <livewire:admin.market.product.product-gallery-list :productId="$product->id" />
 
 @endsection

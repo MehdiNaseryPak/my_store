@@ -1,5 +1,8 @@
 @extends('admin.layouts.master')
 @section('title','افزودن محصول')
+@section('style')
+<link rel="stylesheet" href="{{ asset('admin-assets/vendors/select2/css/select2.min.css') }}">
+@endsection
 @section('content')
 <div class="card">
     <div class="card-body">
@@ -16,7 +19,7 @@
                 <div class="form-group row">
                     <label class="col-sm-2 col-form-label">دسته بندی</label>
                     <div class="col-sm-10">
-                        <select class="form-control" id="category_id" name="category_id">
+                        <select class="form-control select2" multiple="multiple" id="categories" name="categories[]">
                             @foreach($categories as $category)
                                 <option value="{{$category->id}}">{{$category->name}}</option>
                             @endforeach
@@ -33,36 +36,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">قیمت</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-right" placeholder="قیمت" dir="ltr" name="price" value="{{ old('price') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">وزن</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-right" placeholder="وزن" dir="ltr" name="weight" value="{{ old('weight') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">طول</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-right" placeholder="طول" dir="ltr" name="length" value="{{ old('length') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">عرض</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-right" placeholder="عرض" dir="ltr" name="width" value="{{ old('width') }}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label  class="col-sm-2 col-form-label">ارتفاع</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control text-right" placeholder="ارتفاع" dir="ltr" name="height" value="{{ old('height') }}">
-                    </div>
-                </div>
+                
                 <div class="form-group row">
                     <label  class="col-sm-2 col-form-label">توضیحات</label>
                     <div class="col-sm-10">
@@ -132,9 +106,14 @@
 </div>
 @endsection
 @section('script')
+<script src="{{ asset('admin-assets/vendors/select2/js/select2.min.js') }}"></script>
 
 <script>
     $(function(){
+        $('#categories').select2({
+            placeholder: "دسته بندی های محصول",
+            allowClear: true
+        });
         $("#btn-copy").on('click', function(){
           var ele = $(this).parent().prev().clone(true);
           $(this).before(ele);
