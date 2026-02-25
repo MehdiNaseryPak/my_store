@@ -13,7 +13,9 @@ use App\Http\Controllers\Admin\Market\ProductController;
 use App\Http\Controllers\Admin\ProjectGalleryController;
 use App\Http\Controllers\Admin\Content\PostCategoryController;
 use App\Http\Controllers\Admin\Market\ProductGalleryController;
+use App\Http\Controllers\Admin\Market\ProductVariantController;
 use App\Http\Controllers\Admin\Market\ProductCategoryController;
+use App\Http\Controllers\Admin\Market\ProductVariantAttributeController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -99,6 +101,23 @@ Route::prefix('admin')->group(function () {
                 Route::get('/{product:id}',[ProductGalleryController::class,'index'])->name('admin.market.product.gallery.index');
                 Route::get('/create/{product:id}',[ProductGalleryController::class,'create'])->name('admin.market.product.gallery.create');
                 Route::post('/store/{product:id}',[ProductGalleryController::class,'store'])->name('admin.market.product.gallery.store');
+            });
+            // variants
+            Route::prefix('variants')->group(function(){
+                Route::get('/{product:id}',[ProductVariantController::class,'index'])->name('admin.market.product.variant.index');
+                Route::get('/create/{product:id}',[ProductVariantController::class,'create'])->name('admin.market.product.variant.create');
+                Route::post('/store/{product:id}',[ProductVariantController::class,'store'])->name('admin.market.product.variant.store');
+                Route::get('/edit/{product}/{productVariant}',[ProductVariantController::class,'edit'])->name('admin.market.product.variant.edit');
+                Route::put('/update/{product}/{productVariant}',[ProductVariantController::class,'update'])->name('admin.market.product.variant.update');
+                // attributes
+                Route::prefix('attributes')->group(function(){
+                    Route::get('/{productVariant:id}',[ProductVariantAttributeController::class,'index'])->name('admin.market.product.variant.attribute.index');
+                    Route::get('/create/{productVariant:id}',[ProductVariantAttributeController::class,'create'])->name('admin.market.product.variant.attribute.create');
+                    Route::post('/store/{productVariant:id}',[ProductVariantAttributeController::class,'store'])->name('admin.market.product.variant.attribute.store');
+                    Route::get('/edit/{productVariant}/{productVariantAttribute}',[ProductVariantAttributeController::class,'edit'])->name('admin.market.product.variant.attribute.edit');
+                    Route::put('/update/{productVariant}/{productVariantAttribute}',[ProductVariantAttributeController::class,'update'])->name('admin.market.product.variant.attribute.update');
+                });
+            
             });
         });
     });

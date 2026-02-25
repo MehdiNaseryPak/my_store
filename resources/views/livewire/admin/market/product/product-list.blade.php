@@ -22,6 +22,7 @@
                     <th class="text-center align-middle text-primary">عکس</th>
                     <th class="text-center align-middle text-primary">وضعیت</th>
                     <th class="text-center align-middle text-primary">قابل فروش</th>
+                    <th class="text-center align-middle text-primary">مدل</th>
                     <th class="text-center align-middle text-primary">گالری</th>
                     <th class="text-center align-middle text-primary">ویرایش</th>
                     <th class="text-center align-middle text-primary">حذف</th>
@@ -49,6 +50,11 @@
                         </td>
                         <td class="text-center align-middle"><span wire:click="changeStatus({{ $product->id }})" class="cursor-pointer badge @if($product->status) badge-success @else badge-danger @endif">{{ $product->status ? 'فعال' : 'غیرفعال' }}</span></td>
                         <td class="text-center align-middle"><span wire:click="changeMarketable({{ $product->id }})" class="cursor-pointer badge @if($product->marketable) badge-success @else badge-danger @endif">{{ $product->marketable ? 'فعال' : 'غیرفعال' }}</span></td>
+                        <td class="text-center align-middle">
+                            <a class="btn btn-outline-success" href="{{ route('admin.market.product.variant.index', $product->id) }}">
+                                مدل
+                            </a>
+                        </td>
                         <td class="text-center align-middle">
                             <a class="btn btn-outline-warning" href="{{ route('admin.market.product.gallery.index', $product->id) }}">
                                 گالری

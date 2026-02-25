@@ -31,4 +31,8 @@ class Product extends Model
     {
         return $this->hasMany(ProductMeta::class);
     }
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }
